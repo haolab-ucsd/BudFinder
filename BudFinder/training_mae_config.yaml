@@ -1,0 +1,28 @@
+## inputs
+data:
+ tifpath: '/movies' # path to the raw movie files
+ csvpath: 'csv/divstack_cleaned.csv' # csv file directory
+model:
+ in_chan: 1 # number of input channels
+ in_dim: 64 # input size
+ patch_size: 8 # patch size
+ n_enc_layers: 4 # encoder depth
+ n_dec_layers: 1 # decoder depth
+ mask_frac: 0.75 # fraction of mask patches
+ n_heads: 4
+training:
+ num_epoch: 10
+ count: 0 # keep track of actual number of total iteration
+ acc_count: 0 # keep track of number of model update iteration
+ lr: 1e-4
+ wdecay: 1e-5
+ warm_steps: 400
+ cos_total_steps: 100
+ scheduler: 'mixed' # None , 'warmup', 'cosine', 'mixed'
+ decay_val: 0.99 # ema decay
+ T_mult: 2
+ save_freq: 2
+ batch_num: 5 # batch size
+ accumulation_steps: 12 # accumulation steps
+ pretrained_weight: None #
+

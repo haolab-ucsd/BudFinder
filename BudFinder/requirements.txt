@@ -1,0 +1,5 @@
+torch==2.2.2
+torchvision==0.17.2
+scikit-image>=0.23.2
+pillow == 10.2.0
+joblib == 1.4.0

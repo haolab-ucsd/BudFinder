@@ -1,0 +1,31 @@
+## inputs
+data:
+ moviepath: '/movies' # path to the raw movie files
+ csvpath: 'csv/divstack_cleaned.csv' # csv file directory
+mae_model:
+ mae_init_enc_path: 'MAEWeights/MAE_init_enc_epoch10.pth' # directory of mae initial encoder
+ mae_pos_emb_path: 'MAEWeights/MAE_pos_emb_epoch10.pth' # directory of mae position embedding
+ mae_enc_path: 'MAEWeights/MAE_encoder_epoch10.pth' # directory of mae encoder
+model:
+ patch_size: 8
+ in_chan: 1
+ n_enc_layers: 4
+ n_heads_enc: 4
+ n_layers_frame: 5
+ n_heads: 4
+training:
+ pretrained_weight: None # directory of pretrained weight, if none then train from scratch
+ fine_tune: False # specify whether you want this to be finetune only
+ save_freq: 2 # frequency of epochs when saving occurs
+ device_placed: 'cpu' # device that the exported torchscript modet will be placed on
+ num_epoch: 500
+ lr:  1e-4
+ wdecay: 1e-5
+ scheduler: 'mixed' # None , 'warmup', 'cosine', 'mixed'
+ warm_steps: 400
+ cos_total_steps: 100
+ decay_val: 0.99 # ema decay
+ T_mult: 2
+ batch_num: 5 # batch size
+ accumulation_steps: 12 # accumulation steps
+ report_freq: 100 # how many accumulation steps cycle before recording loss values
